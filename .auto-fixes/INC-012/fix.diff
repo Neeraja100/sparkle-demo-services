@@ -1,0 +1,9 @@
+diff --git a/backend/config.py b/backend/config.py
+--- a/backend/config.py
++++ b/backend/config.py
+@@ -5,4 +5,6 @@
+-DB_HOST = "localhost"
+-DB_PORT = 5432
++DB_HOST = os.getenv("DB_HOST", "postgres")
++DB_PORT = int(os.getenv("DB_PORT", "5432"))
++CONNECTION_POOL_SIZE = int(os.getenv("POOL_SIZE", "10"))
