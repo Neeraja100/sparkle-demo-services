@@ -1,0 +1,9 @@
+diff --git a/backend/node-service/routes/export.js b/backend/node-service/routes/export.js
+--- a/backend/node-service/routes/export.js
++++ b/backend/node-service/routes/export.js
+@@ -10,2 +10,4 @@
+-  const allUsers = await db.query('SELECT * FROM users');
+-  res.json(allUsers);
++  const cursor = db.query(new Cursor('SELECT * FROM users'));
++  res.setHeader('Content-Type', 'application/json');
++  cursor.pipe(JSONStream.stringify()).pipe(res);
